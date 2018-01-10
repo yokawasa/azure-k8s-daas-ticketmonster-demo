@@ -21,14 +21,14 @@ The pieces of this demo are:
 
 ## Preparations
 ### Azure Database for Postgres
-Create an Azure Database for PostgreSQL server by following this guide - Create an Azure Database for PostgreSQL using [the Azure CLI](https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-azure-cli) or [the Azure portal](https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-portal)
+1. Create an Azure Database for PostgreSQL server by following this guide - Create an Azure Database for PostgreSQL using [the Azure CLI](https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-azure-cli) or [the Azure portal](https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-portal)
 
-Once you have your account and database in Azure Database for Postgres, create a database named **ticketmonster**:
+2. Once you have your account and database in Azure Database for Postgres, create a database named **ticketmonster**:
 ```
 create database ticketmonster;
 ```
 
-Finally, replace the environment variables part of kubernetes/wildfly-server.yaml file with your accounts info:
+3. Finally, replace the environment variables part of kubernetes/wildfly-server.yaml file with your accounts info:
 ```
 containers:
 - name: wildfly
