@@ -42,14 +42,14 @@ wildfly   5         5         5            5           1h
 
 First of all, prepare a new container image for the app and push it to a container registry. 
 
-### Option1: Update the app with **kubectl set image**: 
+### Option1: Update the app with **kubectl set image**:
 
 Suppose you upgrade the container image for the app from tag version 1.0 to 1.1, run the following command:
 
 ```
 kubectl set image deploy wildfly wildfly=<acrLoginServer>/yoichikawasaki/wildfly-ticketmonster-ha:1.1 --record
 ```
-### Option2: Update the app with **kubectl apply**: 
+### Option2: Update the app with **kubectl apply**:
 
 Suppose you upgrade the container image for the app from tag version 1.0 to 1.1, Replace the container image part of kubernetes/wildfly-server.yaml file with the container name:tag:
 

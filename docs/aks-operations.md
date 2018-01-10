@@ -17,7 +17,7 @@ aks-nodepool1-17576119-0   Ready     agent     2h        v1.7.7
 aks-nodepool1-17576119-1   Ready     agent     1m        v1.7.7
 ```
 
-See [Scale an Azure Container Service (AKS) cluster](https://docs.microsoft.com/en-us/azure/aks/scale-cluster) to lean more about the configuration
+See also [Scale an Azure Container Service (AKS) cluster](https://docs.microsoft.com/en-us/azure/aks/scale-cluster) to lean more about the configuration
 
 ## Upgrde AKS Cluster
 
@@ -37,4 +37,14 @@ Run the following command to upgrade your cluster to kubernetes version '1.8.2':
 az aks upgrade --name myAKSCluster --resource-group RG-aks --kubernetes-version 1.8.2
 ```
 
-See [Upgrade an Azure Container Service (AKS) cluster](https://docs.microsoft.com/en-us/azure/aks/upgrade-cluster) to lean more about the configuration
+See also [Upgrade an Azure Container Service (AKS) cluster](https://docs.microsoft.com/en-us/azure/aks/upgrade-cluster) to lean more about the configuration
+
+
+## Browse Kubernete dashboard with AKS
+
+If you want to browse Kubernete dashbboard for your AKS cluster named myAKSCluster in the resource group named RG-aks, run the following command:
+```
+az aks browse --resource-group RG-aks --name myAKSCluster
+```
+
+See also [Kubernetes dashboard with Azure Container Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/kubernetes-dashboard) to learn more about this command.

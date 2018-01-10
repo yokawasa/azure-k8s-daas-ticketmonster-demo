@@ -21,8 +21,14 @@ The pieces of this demo are:
 
 ## Preparations
 ### Azure Database for Postgres
+Create an Azure Database for PostgreSQL server by following this guide - Create an Azure Database for PostgreSQL using [the Azure CLI](https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-azure-cli) or [the Azure portal](https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-portal)
 
-Once you have your account and database in Azure Database for Postgres, replace the environment variables part of kubernetes/wildfly-server.yaml file with your accounts info:
+Once you have your account and database in Azure Database for Postgres, create a database named **ticketmonster**:
+```
+create database ticketmonster;
+```
+
+Finally, replace the environment variables part of kubernetes/wildfly-server.yaml file with your accounts info:
 ```
 containers:
 - name: wildfly
@@ -55,7 +61,7 @@ containers:
 ```
 
 ### Container images for a Ticket-Monster App
-You can basically use a default container image ([yoichikawasaki/wildfly-ticketmonster-ha:1.0](https://hub.docker.com/r/yoichikawasaki/wildfly-ticketmonster-ha/)) for the Ticket-Monster app. However if you want to use your custom app, create a container and push it to a container registry. Once you have a container registered in the registry, replace the container image part of kubernetes/wildfly-server.yaml file with your container image:tag name.
+You can basically use a default container image ([yoichikawasaki/wildfly-ticketmonster-ha:1.0](https://hub.docker.com/r/yoichikawasaki/wildfly-ticketmonster-ha/)) for the Ticket-Monster app. However if you want to use your custom app, create a container image and push it to a container registry. Once you have a container image registered in the registry, replace the container image part of kubernetes/wildfly-server.yaml file with your container image:tag name.
 
 ```
 containers:
