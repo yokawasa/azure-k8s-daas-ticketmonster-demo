@@ -1,16 +1,40 @@
-#  AKS / k8s Cluster Operations
+#  AKS Cluster Operations
 
+## Scale AKS Cluster
 
-
-## Cleanup all k8s components
+If you want to scale your AKS cluster named myAKSCluster in the resource group named RG-aks from 1 to 2 nodes, run the following command:
 ```
-kubectl delete svc,deploy,ds -l context=AKSDemo
+az aks scale --name myAKSCluster --resource-group RG-aks --node-count 2
 ```
 
+Check the list of nodes with the kubectl:
+```
+$ kubectl get nodes
 
+(SAMPLE OUTPUT)
+NAME                       STATUS    ROLES     AGE       VERSION
+aks-nodepool1-17576119-0   Ready     agent     2h        v1.7.7
+aks-nodepool1-17576119-1   Ready     agent     1m        v1.7.7
+```
 
-## Clean all resources in your resource group
+See [Scale an Azure Container Service (AKS) cluster](https://docs.microsoft.com/en-us/azure/aks/scale-cluster) to lean more about the configuration
 
-MC_RG-aks_myK8sCluster_eastus
-MC_<resource-group>_<aks-cluster>_<region>
+## Upgrde AKS Cluster
 
+Check which Kubernetes releases are available for upgrade for your AKS cluster named myAKSCluster in resource group named RG-aks:
+```
+az aks get-versions --name myAKSCluster --resource-group RG-aks --output table
+
+(SAMPLE OUTPUT)
+Name     ResourceGroup    MasterVersion    MasterUpgrades       NodePoolVersion    NodePoolUpgrades
+-------  ---------------  ---------------  -------------------  -----------------  -------------------
+default  RG-aks           1.7.7            1.8.2, 1.8.1, 1.7.9  1.7.7              1.8.2, 1.8.1, 1.7.9
+```
+
+Run the following command to upgrade your cluster to kubernetes version '1.8.2':
+
+```
+az aks upgrade --name myAKSCluster --resource-group RG-aks --kubernetes-version 1.8.2
+```
+
+See [Upgrade an Azure Container Service (AKS) cluster](https://docs.microsoft.com/en-us/azure/aks/upgrade-cluster) to lean more about the configuration
