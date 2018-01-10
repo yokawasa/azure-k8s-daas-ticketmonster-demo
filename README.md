@@ -20,15 +20,15 @@ The pieces of this demo are:
     - Managed PostgreSQL Service in Azure
 
 ## Preparations
-### Azure Database for Postgres
-1. Create an Azure Database for PostgreSQL server by following this guide - Create an Azure Database for PostgreSQL using [the Azure CLI](https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-azure-cli) or [the Azure portal](https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-portal)
+### 1. Azure Database for Postgres
+1-1. Create an Azure Database for PostgreSQL server by following this guide - Create an Azure Database for PostgreSQL using [the Azure CLI](https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-azure-cli) or [the Azure portal](https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-portal)
 
-2. Once you have your account and database in Azure Database for Postgres, create a database named **ticketmonster**:
+1-2. Once you have your account and database in Azure Database for Postgres, create a database named **ticketmonster**:
 ```
 create database ticketmonster;
 ```
 
-3. Finally, replace the environment variables part of kubernetes/wildfly-server.yaml file with your accounts info:
+1-3. Finally, replace the environment variables part of kubernetes/wildfly-server.yaml file with your accounts info:
 ```
 containers:
 - name: wildfly
@@ -43,11 +43,11 @@ containers:
     - name: POSTGRES_PASSWORD
         value: <mypassword>
 ```
-### OMS + Log Analytics
+### 2. OMS + Log Analytics
 
-Create a new OMS workspace and get a workspace ID and primary key for it by following this guide - [Configure the monitoring solution](https://docs.microsoft.com/en-us/azure/aks/tutorial-kubernetes-monitor#configure-the-monitoring-solution).
+2-1. Create a new OMS workspace and get a workspace ID and primary key for it by following this guide - [Configure the monitoring solution](https://docs.microsoft.com/en-us/azure/aks/tutorial-kubernetes-monitor#configure-the-monitoring-solution).
 
-Once you have the workspace ID and primary key of your OMS workspace, replace the values for WSID and KEY with your values in oms-daemonset.yaml.
+2-2. Once you have the workspace ID and primary key of your OMS workspace, replace the values for WSID and KEY with your values in oms-daemonset.yaml.
 ```
 containers:
 - name: omsagent
@@ -60,7 +60,7 @@ containers:
         value: <KEY>
 ```
 
-### Container images for a Ticket-Monster App
+### 3. Container images for a Ticket-Monster App
 You can basically use a default container image ([yoichikawasaki/wildfly-ticketmonster-ha:1.0](https://hub.docker.com/r/yoichikawasaki/wildfly-ticketmonster-ha/)) for the Ticket-Monster app. However if you want to use your custom app, create a container image and push it to a container registry. Once you have a container image registered in the registry, replace the container image part of kubernetes/wildfly-server.yaml file with your container image:tag name.
 
 ```
@@ -71,7 +71,7 @@ containers:
 
 ## Creating and Running AKS Cluster
 
-### Create AKS Cluster
+### 1. Create AKS Cluster
 First of all, update latest azure-cli in case that you're operating locally, NOT using [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview):
 ```
 pip install -U azure-cli
@@ -96,7 +96,7 @@ If you already have a ssh key generated, specify your SSH key with --ssh-key-val
 az aks create --resource-group RG-aks --name myAKSCluster --node-count 1 --ssh-key-value ~/.ssh/id_rsa_aks.pub
 ```
 
-### Install the kubectl CLI and connect to the cluster with kubectl
+### 2. Install the kubectl CLI and connect to the cluster with kubectl
 
 If you want to install it locally, run the following command:
 ```
@@ -115,7 +115,7 @@ NAME                       STATUS    ROLES     AGE       VERSION
 aks-nodepool1-17576119-0   Ready     agent     6m        v1.7.7
 ```
 
-### Deploy Applications
+### 3. Deploy Applications
 
 Install the Apache HTTPD + modcluster by running the following commands:
 ```
@@ -162,7 +162,7 @@ ds/omsagent   1         1         1         1            1           beta.kubern
 ```
 Take note of the EXTERNAL-IP for services/modcluster.
 
-### Access the applications:
+### 4. Access the applications:
 
 Check /mcm (mod_cluster manager):
 ```
