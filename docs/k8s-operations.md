@@ -71,7 +71,7 @@ kubectl describe deploy wildfly
 (SAMPLE OUTPUT)
 ...
    wildfly:
-    Image:  yoichikawasaki/wildfly-ticketmonster-ha:0.1
+    Image:  yoichikawasaki/wildfly-ticketmonster-ha:1.1
 ...
 ```
 
