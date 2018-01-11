@@ -48,8 +48,8 @@ containers:
             name: <mysecret>
             key: <key-for-password>
 ```
-For **POSTGRES_PASSWORD** env value above, you need to create a secret to store your password for Postgres (sensitive data). Please see [Secrets Operations]((docs/secret-operations.md)) to create the secret and add secret name (mysecret) and key (key-for-password) above.
-- [Secrets Operations]((docs/secret-operations.md)).
+For **POSTGRES_PASSWORD** env value above, you need to create a secret to store your password for Postgres (sensitive data). Please follow [Secrets Operations](docs/secret-operations.md) to create a secret and add secret name (mysecret) and key (key-for-password) above.
+- [Secrets Operations](docs/secret-operations.md).
 
 ### 2. OMS + Log Analytics
 

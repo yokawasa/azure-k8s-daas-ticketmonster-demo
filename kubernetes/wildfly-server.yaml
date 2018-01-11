@@ -24,7 +24,10 @@ spec:
             - name: POSTGRES_USER
               value: <myuser>@<myaccount>  # Server admin login name of Azure DB for PostgreSQL
             - name: POSTGRES_PASSWORD
-              value: <mypassword>
+              valueFrom:
+                secretKeyRef:
+                  name: <mysecret>
+                  key: <key-for-password>
           ports:
             - name: wildfly-port
               containerPort: 8080
@@ -38,5 +41,3 @@ spec:
                     "/opt/jboss/wildfly/bin/standalone.sh -c standalone-ha.xml -b `hostname --ip-address` -Dpostgres.host=$POSTGRES_HOST -Dpostgres.port=$POSTGRES_PORT -Dpostgres.user=$POSTGRES_USER -Dpostgres.password=$POSTGRES_PASSWORD -Dmodcluster.host=$MODCLUSTER_SERVICE_HOST -Dmodcluster.port=$MODCLUSTER_SERVICE_PORT "
             ]
           imagePullPolicy: Always
-
-
