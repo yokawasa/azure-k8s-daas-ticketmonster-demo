@@ -43,8 +43,14 @@ containers:
     - name: POSTGRES_USER
         value: <myuser>@<myaccount> # Server admin login name of Azure DB for PostgreSQL
     - name: POSTGRES_PASSWORD
-        value: <mypassword>
+        valueFrom:
+          secretKeyRef:
+            name: <mysecret>
+            key: <key-for-password>
 ```
+For **POSTGRES_PASSWORD** env value above, you need to create a secret to store your password for Postgres (sensitive data). Please see [Secrets Operations]((docs/secret-operations.md)) to create the secret and add secret name (mysecret) and key (key-for-password) above.
+- [Secrets Operations]((docs/secret-operations.md)).
+
 ### 2. OMS + Log Analytics
 
 2-1. Create a new OMS workspace and get a workspace ID and primary key for it by following this guide - [Configure the monitoring solution](https://docs.microsoft.com/en-us/azure/aks/tutorial-kubernetes-monitor#configure-the-monitoring-solution).
@@ -179,6 +185,7 @@ open http://<modcluster external ip>/ticket-monster/
 ## Operations 
 - [AKS Cluster Operations](docs/aks-operations.md)
 - [Kubernetes App Operations](docs/k8s-operations.md)
+- [Secrets Operations]((docs/secret-operations.md))
 
 ## LINKS
 - [Azure Kubernates Services(AKS)](https://docs.microsoft.com/en-us/azure/aks/)
