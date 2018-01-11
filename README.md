@@ -185,7 +185,7 @@ open http://<modcluster external ip>/ticket-monster/
 ## Operations 
 - [AKS Cluster Operations](docs/aks-operations.md)
 - [Kubernetes App Operations](docs/k8s-operations.md)
-- [Secrets Operations]((docs/secret-operations.md))
+- [Secrets Operations](docs/secret-operations.md)
 
 ## LINKS
 - [Azure Kubernates Services(AKS)](https://docs.microsoft.com/en-us/azure/aks/)
