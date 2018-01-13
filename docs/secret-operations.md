@@ -1,7 +1,7 @@
 # Secrets Operations in AKS Cluster
 
 ## Creating a Secret Using kubectl create secret
-Suppose you want to create a secret to store your password (**P@ssword123__**) for Postgres, store the password value in a file like this on your local machine: 
+First of all, suppose you want to create a Secret to hold your password (**P@ssword123__**) for Postgres, store the password value in a file like this on your local machine: 
 ```
 echo -n "P@ssword123__"  > dbpassword
 ```
