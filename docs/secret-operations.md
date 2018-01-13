@@ -1,7 +1,7 @@
 # Secrets Operations in AKS Cluster
 
 ## Creating a Secret Using kubectl create secret
-Suppose you want to create a secret to store your password for Postgres, "P@ssword123__", store the password value in a file like this on your local machine: 
+Suppose you want to create a secret to store your password (**P@ssword123__**) for Postgres, store the password value in a file like this on your local machine: 
 ```
 echo -n "P@ssword123__"  > dbpassword
 ```
@@ -51,7 +51,7 @@ metadata:
 type: Opaque
 ```
 
-The value **UEBzc3dvcmQxMjNfXw==** that you got from the command above is actually base64 encoded value of the actual password, thus you can get the actual value by base64 decoding like this:
+The value **UEBzc3dvcmQxMjNfXw==** that you get from the command above is actually base64 encoded value of the actual password. So, base64 decode it to get the password value:
 
 ```
 echo -n "UEBzc3dvcmQxMjNfXw==" | base64 --decode
