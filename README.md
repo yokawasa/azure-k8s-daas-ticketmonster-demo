@@ -19,8 +19,8 @@ The pieces of this demo are:
 - Azure Database for Postgres 9.5 or 9.6
     - Managed PostgreSQL Service in Azure
 
-## 2. Preparations
-### A. Azure Database for Postgres
+## Preparations
+### 1. Azure Database for Postgres
 1-1. Create an Azure Database for PostgreSQL server by following this guide - Create an Azure Database for PostgreSQL using [the Azure CLI](https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-azure-cli) or [the Azure portal](https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-portal)
 
 1-2. Add firewall rule to whitelist the IP range for connectivity by following this guide - Configure a server-level firewall rule using [the Azure CLI](https://docs.microsoft.com/en-us/azure/postgresql/tutorial-design-database-using-azure-cli#configure-a-server-level-firewall-rule) or [the Azure Portal](https://docs.microsoft.com/en-us/azure/postgresql/tutorial-design-database-using-azure-portal#configure-a-server-level-firewall-rule). 
