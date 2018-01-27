@@ -12,8 +12,6 @@ modcluster-500718032-kfb17   1/1       Running   0          2h
 omsagent-gj322               1/1       Running   0          16m
 omsagent-hsc5r               1/1       Running   0          51m
 wildfly-1364584080-2qswl     1/1       Running   0          1h
-wildfly-1364584080-mpmgh     1/1       Running   0          1h
-wildfly-1364584080-t5q9t     1/1       Running   0          1h
 ```
 
 Or you can check by running **kubectl get deploy**:
@@ -22,12 +20,12 @@ kubectl get deploy wildfly
 
 (SAMPLE OUTPUT)
 NAME      DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
-wildfly   3         3         3            3           1h
+wildfly   1         1         1            1           1h
 ```
 
-So you have 3 pods for wildfly. Then, if you want to scale the # of pods to 5, run the following command:
+So you have 1 pod for wildfly. Then, if you want to scale the # of pods to 3, run the following command:
 ```
-kubectl scale --replicas=5 deploy wildfly
+kubectl scale --replicas=3 deploy wildfly
 ```
 
 Check the # of wildfly pod again:
@@ -36,7 +34,7 @@ kubectl get deploy wildfly
 
 (SAMPLE OUTPUT)
 NAME      DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
-wildfly   5         5         5            5           1h
+wildfly   3         3         3            3           1h
 ```
 
 ## Update the kubernete app:

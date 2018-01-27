@@ -23,14 +23,37 @@ The pieces of this demo are:
 ### 1. Azure Database for Postgres
 1-1. Create an Azure Database for PostgreSQL server by following this guide - Create an Azure Database for PostgreSQL using [the Azure CLI](https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-azure-cli) or [the Azure portal](https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-portal)
 
-1-2. Add firewall rule to whitelist the IP range for connectivity by following this guide - Configure a server-level firewall rule using [the Azure CLI](https://docs.microsoft.com/en-us/azure/postgresql/tutorial-design-database-using-azure-cli#configure-a-server-level-firewall-rule) or [the Azure Portal](https://docs.microsoft.com/en-us/azure/postgresql/tutorial-design-database-using-azure-portal#configure-a-server-level-firewall-rule). 
+1-2. Disable "Enforce SSL connection" as Azure Database for PostgreSQL enable enforcement of SSL connections by default. You can configure this either by the Azure Portal or the Azure CLI. Here is the Azure CLI command for this configuration:
 
-1-3. Once you have your account and database in Azure Database for Postgres, create a database named **ticketmonster**:
+```
+az postgres server update -g <myresourcegroup> -n <myaccountname> --ssl-enforcement Disabled
+```
+For more detail on this step, please refer to [Configure Enforcement of SSL](https://docs.microsoft.com/en-us/azure/postgresql/concepts-ssl-connection-security#configure-enforcement-of-ssl).
+
+1-3. Add firewall rule to whitelist the IP range for connectivity by following this guide - Configure a server-level firewall rule using [the Azure CLI](https://docs.microsoft.com/en-us/azure/postgresql/tutorial-design-database-using-azure-cli#configure-a-server-level-firewall-rule) or [the Azure Portal](https://docs.microsoft.com/en-us/azure/postgresql/tutorial-design-database-using-azure-portal#configure-a-server-level-firewall-rule). 
+
+For testing, simply open all IP addresses like this (NOT recommended for production senario):
+```
+az postgres server firewall-rule create -g <myresourcegroup> -s <myaccountname> --name AllowFullRangeIP --start-ip-address 0.0.0.0 --end-ip-address 255.255.255.255
+```
+For production, open only the AKS cluster's outbound IP! The outbound traffic should NAT via the external IP address of the load balancer associated with the AKS cluster. So find the external IP of the cluster and configure the firewall rule of the database after all cluster deployments are done.
+```
+$ kubectl get svc
+NAME         TYPE           CLUSTER-IP   EXTERNAL-IP     PORT(S)        AGE
+kubernetes   ClusterIP      10.0.0.1     <none>          443/TCP        4h
+modcluster   LoadBalancer   10.0.13.220   13.92.171.134   80:30000/TCP  4h
+```
+In this example, 13.92.171.134 is an IP that you want to configure in the database firewall rule as the cluster's outbound IP:
+```
+az postgres server firewall-rule create -g <myresourcegroup> -s <myaccountname> --name AllowFullRangeIP --start-ip-address 13.92.171.134 --end-ip-address 13.92.171.134
+```
+
+1-4. Once you have your account and database in Azure Database for Postgres, create a database named **ticketmonster**:
 ```
 create database ticketmonster;
 ```
 
-1-4. Finally, replace the environment variables part of kubernetes/wildfly-server.yaml file with your accounts info:
+1-5. Finally, replace the environment variables part of kubernetes/wildfly-server.yaml file with your accounts info:
 ```
 containers:
 - name: wildfly
@@ -144,26 +167,24 @@ kubectl create -f <repodir>/kubernetes/oms-daemonset.yaml --record
 
 Check all the deployments status:
 ```
-kubectl get pod,rs,svc,deploy,ds -l context=AKSDemo
+kubectl get po,rs,svc,deploy,ds -l context=AKSDemo
 
 (SAMPLE OUTPUT)
 NAME                            READY     STATUS    RESTARTS   AGE
 po/modcluster-500718032-kfb17   1/1       Running   0          1h
 po/omsagent-hsc5r               1/1       Running   0          57s
 po/wildfly-1364584080-2qswl     1/1       Running   0          1h
-po/wildfly-1364584080-mpmgh     1/1       Running   0          1h
-po/wildfly-1364584080-t5q9t     1/1       Running   0          1h
 
 NAME                      DESIRED   CURRENT   READY     AGE
 rs/modcluster-500718032   1         1         1         1h
-rs/wildfly-1364584080     3         3         3         1h
+rs/wildfly-1364584080     1         1         1         1h
 
 NAME             TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)        AGE
 svc/modcluster   LoadBalancer   10.0.13.220   13.92.171.134   80:30000/TCP   1h
 
 NAME                DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 deploy/modcluster   1         1         1            1           1h
-deploy/wildfly      3         3         3            3           1h
+deploy/wildfly      1         1         1            1           1h
 
 NAME          DESIRED   CURRENT   READY     UP-TO-DATE   AVAILABLE   NODE SELECTOR                 AGE
 ds/omsagent   1         1         1         1            1           beta.kubernetes.io/os=linux   58s

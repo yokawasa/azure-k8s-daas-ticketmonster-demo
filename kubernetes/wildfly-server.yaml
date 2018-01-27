@@ -6,7 +6,7 @@ metadata:
     app: wildfly
     context: AKSDemo
 spec:
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:
