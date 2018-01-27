@@ -45,7 +45,7 @@ modcluster   LoadBalancer   10.0.13.220   13.92.171.134   80:30000/TCP  4h
 ```
 In this example, 13.92.171.134 is an IP that you want to configure in the database firewall rule as the cluster's outbound IP:
 ```
-az postgres server firewall-rule create -g <myresourcegroup> -s <myaccountname> --name AllowFullRangeIP --start-ip-address 13.92.171.134 --end-ip-address 13.92.171.134
+az postgres server firewall-rule create -g <myresourcegroup> -s <myaccountname> --name AllowAKSClusterIP --start-ip-address 13.92.171.134 --end-ip-address 13.92.171.134
 ```
 
 1-4. Once you have your account and database in Azure Database for Postgres, create a database named **ticketmonster**:
@@ -90,6 +90,9 @@ containers:
     - name: KEY
         value: <KEY>
 ```
+After all AKS cluster setup are completed, OMS starts collect metrics and logs from the cluster. Here are the OMS container solution dashboard screen capture:
+
+![](images/azure-oms-container-solution.png)
 
 ### 3. Container images for a Ticket-Monster App
 You can basically use a default container image ([yoichikawasaki/wildfly-ticketmonster-ha:1.0](https://hub.docker.com/r/yoichikawasaki/wildfly-ticketmonster-ha/)) for the Ticket-Monster app. However if you want to use your custom app, create a container image and push it to a container registry. Once you have a container image registered in the registry, replace the container image part of kubernetes/wildfly-server.yaml file with your container image:tag name.
@@ -202,6 +205,7 @@ Access Ticket-Monster application:
 ```
 open http://<modcluster external ip>/ticket-monster/
 ```
+![](images/ticket-monster-app.png)
 
 ## Operations 
 - [AKS Cluster Operations](docs/aks-operations.md)

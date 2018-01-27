@@ -46,5 +46,6 @@ If you want to browse Kubernete dashbboard for your AKS cluster named myAKSClust
 ```
 az aks browse --resource-group RG-aks --name myAKSCluster
 ```
-
 See also [Kubernetes dashboard with Azure Container Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/kubernetes-dashboard) to learn more about this command.
+
+![](../images/azure-kubernetes-dashboard.png)
