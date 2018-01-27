@@ -217,3 +217,4 @@ open http://<modcluster external ip>/ticket-monster/
 - [Azure Database for PostgreSQL](https://docs.microsoft.com/en-us/azure/postgresql/)
 - [OMS/LogAnalytic Service](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-containers)
 - [Monitor Azure Container Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/tutorial-kubernetes-monitor)
+- [Ticket Monster Github Repo](https://github.com/jboss-developer/ticket-monster)
