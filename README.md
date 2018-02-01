@@ -25,8 +25,7 @@ The pieces of this demo are:
 - Azure Database for Postgres 9.5 or 9.6
     - Managed PostgreSQL Service in Azure
 
-
-### Procedures
+### Cluster1 Procedures
 - [Preparations (Azure PaaS Setup)](docs/preparations-cluster1.md)
 - [Create AKS Cluster](docs/create-aks-cluster.md)
 - [Deploy Applications](docs/deploy-cluster1-apps.md)
@@ -51,7 +50,7 @@ The pieces of this demo are:
     - Deployment (Replica Set, Pod)
     - Service
 
-### Procedures
+### Cluster2 Procedures
 - [Create AKS Cluster](docs/create-aks-cluster.md)
 - [Deploy Applications](docs/deploy-cluster2-apps.md)
 - [AKS Cluster Operations](docs/aks-operations.md)
