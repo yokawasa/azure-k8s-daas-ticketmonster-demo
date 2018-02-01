@@ -1,0 +1,33 @@
+apiVersion: apps/v1beta1  # apps/v1 for versions from 1.9.0, use apps/v1beta1 for before 1.9.0
+kind: Deployment
+metadata:
+  name: wildfly
+  labels:
+    name: wildfly
+    context: AKSDemo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: wildfly
+        context: AKSDemo
+    spec:
+      containers:
+        - name: wildfly
+          image: rafabene/wildfly-ticketmonster-ha
+          ports:
+            - name: wildfly-port
+              containerPort: 8080
+              protocol: TCP
+            - name: admin-port
+              containerPort: 9990
+              protocol: TCP
+          command: [
+                    "sh",
+                    "-c",
+                    "/opt/jboss/wildfly/bin/standalone.sh -c standalone-ha.xml  -b `hostname --ip-address` -Dpostgres.host=$POSTGRES_SERVICE_HOST -Dpostgres.port=$POSTGRES_SERVICE_PORT -Dmodcluster.host=$MODCLUSTER_SERVICE_HOST -Dmodcluster.port=$MODCLUSTER_SERVICE_PORT "
+            ]
+          imagePullPolicy: Always
+
+
