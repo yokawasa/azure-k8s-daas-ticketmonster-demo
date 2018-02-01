@@ -9,7 +9,7 @@ Demo clusters in the project:
 
 ## Cluster1: Azure Kubernetes Services (AKS) and Azure PaaS Services
 
-![](images/azure-k8s-daas-oms-ticketmonster-demo-arch.png)
+![](images/azure-k8s-cluster1-arch.png)
 
 The pieces of this demo are:
 
