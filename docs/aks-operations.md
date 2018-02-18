@@ -23,18 +23,18 @@ See also [Scale an Azure Container Service (AKS) cluster](https://docs.microsoft
 
 Check which Kubernetes releases are available for upgrade for your AKS cluster named myAKSCluster in resource group named RG-aks:
 ```
-az aks get-versions --name myAKSCluster --resource-group RG-aks --output table
+az aks get-upgrades --name myAKSCluster --resource-group RG-aks --output table
 
 (SAMPLE OUTPUT)
-Name     ResourceGroup    MasterVersion    MasterUpgrades       NodePoolVersion    NodePoolUpgrades
--------  ---------------  ---------------  -------------------  -----------------  -------------------
-default  RG-aks           1.7.7            1.8.2, 1.8.1, 1.7.9  1.7.7              1.8.2, 1.8.1, 1.7.9
+Name     ResourceGroup    MasterVersion    NodePoolVersion    Upgrades
+-------  ---------------  ---------------  -----------------  -----------------------------------------
+default  RG-aks           1.7.7            1.7.7              1.7.9, 1.7.12, 1.8.1, 1.8.2, 1.8.6, 1.8.7
 ```
 
-Run the following command to upgrade your cluster to kubernetes version '1.8.2':
+Run the following command to upgrade your cluster to kubernetes version '1.8.6':
 
 ```
-az aks upgrade --name myAKSCluster --resource-group RG-aks --kubernetes-version 1.8.2
+az aks upgrade --name myAKSCluster --resource-group RG-aks --kubernetes-version 1.8.6
 ```
 
 See also [Upgrade an Azure Container Service (AKS) cluster](https://docs.microsoft.com/en-us/azure/aks/upgrade-cluster) to lean more about the configuration
