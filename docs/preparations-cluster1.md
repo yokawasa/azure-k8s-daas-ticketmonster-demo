@@ -51,7 +51,7 @@ containers:
             key: <key-for-password>
 ```
 For **POSTGRES_PASSWORD** env value above, you need to create a secret to store your password for Postgres (sensitive data). Please follow [Secrets Operations](docs/secret-operations.md) to create a secret and add secret name (mysecret) and key (key-for-password) above.
-- [Secrets Operations](docs/secret-operations.md).
+- [Secrets Operations](secret-operations.md).
 
 **TODO**
 - use [Open Service Broker for Azure](https://docs.microsoft.com/en-us/azure/aks/integrate-azure) to connect Azure Database for Postgres
