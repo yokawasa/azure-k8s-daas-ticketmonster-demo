@@ -74,13 +74,6 @@ kubectl describe deploy wildfly
 ...
 ```
 
-## Cleanup all k8s objects selected by labels
-
-Cleanup all objects that has a label "context=AKSDemo"
-```
-kubectl delete svc,deploy,ds -l context=AKSDemo
-```
-
 ## Get a shell to the running Container
 
 Get a list of Pods by running **kubectrl get po**:
@@ -100,3 +93,11 @@ Suppose you want to get a shell to the running Container in a Pod named wildfly-
 kubectl exec -it wildfly-1364584080-01z1x -- /bin/bash
 ```
 See also [Get a Shell to a Running Container](https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/) to lean more about the command.
+
+
+## Cleanup all k8s objects selected by labels
+
+Cleanup all objects that has a label "context=AKSDemo"
+```
+kubectl delete svc,deploy,ds -l context=AKSDemo
+```
