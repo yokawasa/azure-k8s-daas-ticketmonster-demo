@@ -1,7 +1,7 @@
 # Create AKS Cluster
 
 ## 1. Create AKS Cluster
-First of all, update latest azure-cli in case that you're operating locally, NOT using [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview):
+First of all, update latest azure-cli in case that you're operating locally. This step can be skipped if you're using [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview):
 ```
 pip install -U azure-cli
 ```
