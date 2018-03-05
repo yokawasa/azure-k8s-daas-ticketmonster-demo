@@ -16,7 +16,7 @@ kubectl create -f <repodir>/kubernetes/cluster2/postgres-service.yaml --record
 
 Install the Wildfly Servers by running the following command ([NOTE] You don't need to create a Service for the Wildfly as it only act as a backend):
 ```
-kubectl create -f <repodir>/kubernetes/wildfly-server.yaml --record
+kubectl create -f <repodir>/kubernetes/cluster2/wildfly-server.yaml --record
 ```
 
 
