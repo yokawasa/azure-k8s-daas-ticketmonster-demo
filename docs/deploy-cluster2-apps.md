@@ -4,19 +4,20 @@
 
 Install the Apache HTTPD + modcluster by running the following commands:
 ```
-kubectl create -f <repodir>/kubernetes/cluster2/modcluster.yaml --record
-kubectl create -f <repodir>/kubernetes/cluster2/modcluster-service.yaml --record
+kubectl create -f kubernetes/cluster2/modcluster.yaml --record
+kubectl create -f kubernetes/cluster2/modcluster-service.yaml --record
 ```
 
 Install the PostgreSQL server by running the following command:
 ```
-kubectl create -f <repodir>/kubernetes/cluster2/postgres.yaml --record
-kubectl create -f <repodir>/kubernetes/cluster2/postgres-service.yaml --record
+kubectl create -f kubernetes/cluster2/postgres-secret.yaml --record
+kubectl create -f kubernetes/cluster2/postgres.yaml --record
+kubectl create -f kubernetes/cluster2/postgres-service.yaml --record
 ```
 
 Install the Wildfly Servers by running the following command ([NOTE] You don't need to create a Service for the Wildfly as it only act as a backend):
 ```
-kubectl create -f <repodir>/kubernetes/cluster2/wildfly-server.yaml --record
+kubectl create -f kubernetes/cluster2/wildfly-server.yaml --record
 ```
 
 

@@ -20,7 +20,10 @@ spec:
             - name: POSTGRES_USER
               value: ticketmonster
             - name: POSTGRES_PASSWORD
-              value: ticketmonster-docker
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: userPassword
           ports:
             - name: postgres-port
               containerPort: 5432

@@ -31,7 +31,7 @@ The pieces of this demo are:
 - [Deploy Applications](docs/deploy-cluster1-apps.md)
 - [AKS Cluster Operations](docs/aks-operations.md)
 - [Kubernetes App Operations](docs/k8s-operations.md)
-- [Secrets Operations](docs/secret-operations.md)
+- [Secrets Operations](docs/secret-operations1.md)
 - Monitoring and Alerting with OMS/Loganalytics
 - CI/CD pipeline
 
@@ -55,6 +55,7 @@ The pieces of this demo are:
 - [Deploy Applications](docs/deploy-cluster2-apps.md)
 - [AKS Cluster Operations](docs/aks-operations.md)
 - [Kubernetes App Operations](docs/k8s-operations.md)
+- [Secrets Operations](docs/secret-operations2.md)
 - Monitoring and Alerting
 - CI/CD pipeline
 
