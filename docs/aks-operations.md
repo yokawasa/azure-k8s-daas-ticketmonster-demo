@@ -1,5 +1,11 @@
 #  AKS Cluster Operations
 
+## Dump Cluster Info
+
+```
+kubectl cluster-info dump
+```
+
 ## Scale AKS Cluster
 
 If you want to scale your AKS cluster named myAKSCluster in the resource group named RG-aks from 1 to 2 nodes, run the following command:

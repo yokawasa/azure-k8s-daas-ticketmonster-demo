@@ -37,6 +37,16 @@ az aks get-credentials --resource-group=RG-aks --name=myAKSCluster
 ```
 Check if you can connect to the cluster by running the kubectl command:
 ```
+kubectl cluster-info
+
+(Sample OUTPUT)
+Kubernetes master is running at https://myaksclust-rg-aks-87c7c7-d177390a.hcp.eastus.azmk8s.io:443
+Heapster is running at https://myaksclust-rg-aks-87c7c7-d177390a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/heapster/proxy
+KubeDNS is running at https://myaksclust-rg-aks-87c7c7-d177390a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+kubernetes-dashboard is running at https://myaksclust-rg-aks-87c7c7-d177390a.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/kubernetes-dashboard/proxy
+```
+
+```
 kubectl get nodes
 
 (SAMPLE OUTPUT)
