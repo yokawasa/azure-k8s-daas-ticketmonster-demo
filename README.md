@@ -34,7 +34,7 @@ The pieces of this demo are:
 - [6. Scale out Pods and Nodes (Cluster2)](docs/06-scale-out-pod-node.md)
 - Extras:
     - [Manage Kubernetes App with kubectl](docs/k8s-operations-with-kubectl.md)
-    - [Secrets Operations](docs/secret-operations1.md)
+    - [Secrets Operations](docs/secret-operations.md)
     - [Monitoring with Prometheus and Grafana](docs/monitoring-with-prometheous-grafana.md)
 
 ## LINKS
