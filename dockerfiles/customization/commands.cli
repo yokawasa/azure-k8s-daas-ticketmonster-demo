@@ -13,7 +13,7 @@ module add --name=org.postgresql --resources=/opt/jboss/wildfly/customization/po
 /subsystem=datasources/jdbc-driver=postgres:add(driver-name=postgres, driver-module-name=org.postgresql, driver-class-name=org.postgresql.Driver)
 
 #Add Datasource
-data-source add --name=TicketMonsterPostgreSQLDS --jndi-name=java:jboss/datasources/TicketMonsterPostgreSQLDS --driver-name=postgres --connection-url=jdbc:postgresql://${postgres.host:db}:${postgres.port:5432}/ticketmonster --user-name=${postgres.user:ticketmonster} --password=${postgres.password:ticketmonster-docker} --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter --validate-on-match=true --background-validation=true
+data-source add --name=TicketMonsterPostgreSQLDS --jndi-name=java:jboss/datasources/TicketMonsterPostgreSQLDS --driver-name=postgres --connection-url=jdbc:postgresql://${postgres.host:db}:${postgres.port:5432}/${postgres.database:ticketmonster} --user-name=${postgres.user:ticketmonster} --password=${postgres.password:ticketmonster-docker} --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter --validate-on-match=true --background-validation=true
 
 #Execute the batch
 run-batch

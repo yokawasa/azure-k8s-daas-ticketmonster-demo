@@ -1,0 +1,57 @@
+apiVersion: apps/v1beta1  # apps/v1 for versions from 1.9.0, use apps/v1beta1 for before 1.9.0
+kind: Deployment
+metadata:
+  name: wildfly
+  labels:
+    app: wildfly
+    context: AKSDemo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: wildfly
+        context: AKSDemo
+    spec:
+      containers:
+        - name: wildfly
+          image: yoichikawasaki/wildfly-ticketmonster-ha:1.1
+          env:
+            - name: POSTGRES_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: host
+                  name: my-postgresql-secret
+            - name: POSTGRES_PORT
+              valueFrom:
+                secretKeyRef:
+                  key: port 
+                  name: my-postgresql-secret
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: my-postgresql-secret
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: my-postgresql-secret
+            - name: POSTGRES_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  key: database
+                  name: my-postgresql-secret
+          ports:
+            - name: wildfly-port
+              containerPort: 8080
+              protocol: TCP
+            - name: admin-port
+              containerPort: 9990
+              protocol: TCP
+          command: [
+                    "sh",
+                    "-c",
+                    "/opt/jboss/wildfly/bin/standalone.sh -c standalone-ha.xml -b `hostname --ip-address` -Dpostgres.host=$POSTGRES_HOST -Dpostgres.port=$POSTGRES_PORT -Dpostgres.user=$POSTGRES_USER -Dpostgres.password=$POSTGRES_PASSWORD -Dpostgres.database=$POSTGRES_DATABASE -Dmodcluster.host=$MODCLUSTER_SERVICE_HOST -Dmodcluster.port=$MODCLUSTER_SERVICE_PORT "
+            ]
+          imagePullPolicy: Always

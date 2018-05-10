@@ -1,0 +1,23 @@
+apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ServiceInstance
+metadata:
+  name: my-postgresql-instance
+  namespace: default
+spec:
+  clusterServiceClassExternalName: azure-postgresql-9-6
+  clusterServicePlanExternalName: general-purpose
+  parameters:
+    location: eastus
+    resourceGroup: RG-aks
+    sslEnforcement: disabled
+    extensions:
+    - uuid-ossp
+    - postgis
+    firewallRules:
+    - name: "AllowFromAzure"
+      startIPAddress: "0.0.0.0"
+      endIPAddress: "0.0.0.0"
+    hardwareFamily: "gen5"
+    cores: 2
+    storage: 5
+    backupRetention: 7

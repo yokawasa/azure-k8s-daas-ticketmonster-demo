@@ -31,4 +31,4 @@ EXPOSE 8080 9990 8009
 
 # Set the default command to run on boot
 # This will boot WildFly in the standalone mode and bind to external interface
-CMD /opt/jboss/wildfly/bin/standalone.sh -c standalone-ha.xml -b 0.0.0.0 -bmanagement 0.0.0.0 -Dpostgres.host=$POSTGRES_EXTERNAL_HOST -Dpostgres.port=$POSTGRES_EXTERNAL_PORT -Dpostgres.user=$POSTGRES_EXTERNAL_USER -Dpostgres.password=$POSTGRES_EXTERNAL_PASSWORD -Dmodcluster.host=$MODCLUSTER_SERVICE_HOST -Dmodcluster.port=$MODCLUSTER_SERVICE_PORT
+CMD /opt/jboss/wildfly/bin/standalone.sh -c standalone-ha.xml -b 0.0.0.0 -bmanagement 0.0.0.0 -Dpostgres.host=$POSTGRES_EXTERNAL_HOST -Dpostgres.port=$POSTGRES_EXTERNAL_PORT -Dpostgres.user=$POSTGRES_EXTERNAL_USER -Dpostgres.password=$POSTGRES_EXTERNAL_PASSWORD -Dpostgres.database=$POSTGRES_EXTERNAL_DATABASE -Dmodcluster.host=$MODCLUSTER_SERVICE_HOST -Dmodcluster.port=$MODCLUSTER_SERVICE_PORT

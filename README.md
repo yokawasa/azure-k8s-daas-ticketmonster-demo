@@ -1,43 +1,11 @@
 # azure-k8s-daas-ticketmonster-demo
 Ticket-Monster HA Cluster Demo using Azure Kubernetes Services (AKS) and Managed PostgreSQL
 
-This project contains files that allows you to run [Ticket Monster](https://developers.redhat.com/ticket-monster/) on a [WildFly](http://www.wildfly.org/) server on [Azure Kubernates Services(AKS)](https://docs.microsoft.com/en-us/azure/aks/) + using [Azure Database for PostgreSQL](https://docs.microsoft.com/en-us/azure/postgresql/) and [OMS/LogAnalytic Service](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-containers) in Azure. This project is a fork of the [devops-demo](https://github.com/rafabene/devops-demo) by [rafabene](https://github.com/rafabene).
+This project contains files that allows you to run [Ticket Monster](https://developers.redhat.com/ticket-monster/) on a [WildFly](http://www.wildfly.org/) server on [Azure Kubernates Services(AKS)](https://docs.microsoft.com/en-us/azure/aks/) + using [Azure Database for PostgreSQL](https://docs.microsoft.com/en-us/azure/postgresql/) and [OMS/LogAnalytic Service](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-containers) in Azure. This project is a fork of the [devops-demo](https://github.com/rafabene/devops-demo) by [rafabene](https://github.com/rafabene)
 
-Demo clusters in the project: 
-- Cluster1: Azure Kubernetes Services (AKS) and Azure PaaS Services
-- Cluster2: All in Azure Kubernetes Services (AKS)
+## Demo Architecture and Components
 
-## Cluster1: Azure Kubernetes Services (AKS) and Azure PaaS Services
-
-![](images/azure-k8s-cluster1-arch.png)
-
-The pieces of this demo are:
-
-- Apache HTTPD + mod_cluster
-    - Deployment (Replica Set, Pod)
-    - Service
-- Wildfly 10.x Application Server + Ticket Monster application
-    - Deployment (Replica Set, Pod)
-- OMS + Log Analytics Agent
-    - DaemonSet (Pod)
-    - Client Daemon Set for Managed Monitor and Log Analytics Service in Azure
-
-- Azure Database for Postgres 9.5 or 9.6
-    - Managed PostgreSQL Service in Azure
-
-### Cluster1 Procedures
-- [Preparations (Azure PaaS Setup)](docs/preparations-cluster1.md)
-- [Create AKS Cluster](docs/create-aks-cluster.md)
-- [Deploy Applications](docs/deploy-cluster1-apps.md)
-- [AKS Cluster Operations](docs/aks-operations.md)
-- [Kubernetes App Operations](docs/k8s-operations.md)
-- [Secrets Operations](docs/secret-operations1.md)
-- Monitoring and Alerting with OMS/Loganalytics
-- CI/CD pipeline
-
-## Cluster2: All in Azure Kubernetes Services (AKS)
-
-![](images/azure-k8s-cluster2-arch.png)
+![](images/azure-k8s-cluster-overview.png)
 
 The pieces of this demo are:
 
@@ -49,15 +17,25 @@ The pieces of this demo are:
 - Postgres 9.x Database Server
     - Deployment (Replica Set, Pod)
     - Service
+- Azure Database for Postgres 9.5 or 9.6
+    - Managed PostgreSQL Service in Azure
+- Open Service Broker API for Azure
+- OMS + Log Analytics Agent
+    - DaemonSet (Pod)
+    - Client Daemon Set for Managed Monitor and Log Analytics Service in Azure
 
-### Cluster2 Procedures
-- [Create AKS Cluster](docs/create-aks-cluster.md)
-- [Deploy Applications](docs/deploy-cluster2-apps.md)
-- [AKS Cluster Operations](docs/aks-operations.md)
-- [Kubernetes App Operations](docs/k8s-operations.md)
-- [Secrets Operations](docs/secret-operations2.md)
-- Monitoring and Alerting
-- CI/CD pipeline
+### Procedures
+- [0. Preparations](docs/00-preparations.md)
+- [1. Create AKS Cluster](docs/01-create-aks-cluster.md)
+- [2. Deploy Applications (Cluster1)](docs/02-deploy-apps.md)
+- [3. Manage AKS Cluster with Azure CLI](docs/03-manage-aks-cluster.md)
+- [4. Provision, bind and consume PostgreSQL PaaS using OSBA](docs/04-osba-postgresql.md)
+- [5. Monitoring with OMS/Loganalytics](docs/05-monitoring-with-oms-loganalytics.md)
+- [6. Scale out Pods and Nodes (Cluster2)](docs/06-scale-out-pod-node.md)
+- Extras:
+    - [Manage Kubernetes App with kubectl](docs/k8s-operations-with-kubectl.md)
+    - [Secrets Operations](docs/secret-operations1.md)
+    - [Monitoring with Prometheus and Grafana](docs/monitoring-with-prometheous-grafana.md)
 
 ## LINKS
 - [Azure Kubernates Services(AKS)](https://docs.microsoft.com/en-us/azure/aks/)
