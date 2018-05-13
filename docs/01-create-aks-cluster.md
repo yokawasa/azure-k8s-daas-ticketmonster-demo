@@ -15,7 +15,7 @@ az provider register -n Microsoft.Compute
 Then, create resource group (Resource group named RG-aks in eastus region):
 ```
 RESOURCE_GROUP='your resource group (e.g., "RG-aks")'
-LOCATION='your location (e.g., "eastus")'
+LOCATION='your location (e.g.,"eastus")'
 
 az group create --name $RESOURCE_GROUP --location $LOCATION
 ```
@@ -23,8 +23,8 @@ az group create --name $RESOURCE_GROUP --location $LOCATION
 Create AKS Cluster (generate a new SSH key):
 ```
 RESOURCE_GROUP='your resource group (e.g., "RG-aks")'
-LOCATION='your location (e.g., "eastus")'
-CLUSTER_NAME='your AKS cluster name (e.g., "myAKSCluster")'
+LOCATION='your location (e.g., "eastus")'
+CLUSTER_NAME='your AKS cluster name (e.g., "myAKSCluster")'
 NODE_COUNT='the number of node you create (e.g., 1)'
 
 az aks create --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --node-count $NODE_COUNT --generate-ssh-keys
@@ -50,7 +50,7 @@ You can skip this installation if you're running this workthrough on [Azure Clou
 Then, run the following command to configure kubectl to connect to your Kubernetes cluster, run the following command:
 ```
 RESOURCE_GROUP='your resource group (e.g., "RG-aks")'
-CLUSTER_NAME='your AKS cluster name (e.g., "myAKSCluster")'
+CLUSTER_NAME='your AKS cluster name (e.g., "myAKSCluster")'
 
 az aks get-credentials --resource-group=$RESOURCE_GROUP --name=$CLUSTER_NAME
 ```
