@@ -4,8 +4,11 @@ Ticket-Monster HA Cluster Demo using Azure Kubernetes Services (AKS) and Managed
 This project contains files that allows you to run [Ticket Monster](https://developers.redhat.com/ticket-monster/) on a [WildFly](http://www.wildfly.org/) server on [Azure Kubernates Services(AKS)](https://docs.microsoft.com/en-us/azure/aks/) + using [Azure Database for PostgreSQL](https://docs.microsoft.com/en-us/azure/postgresql/) and [OMS/LogAnalytic Service](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-containers) in Azure. This project is a fork of the [devops-demo](https://github.com/rafabene/devops-demo) by [rafabene](https://github.com/rafabene)
 
 ## Demo Architecture and Components
+- Cluster1
+![](images/azure-k8s-cluster1.png)
 
-![](images/azure-k8s-cluster-overview.png)
+- Cluster2
+![](images/azure-k8s-cluster2.png)
 
 The pieces of this demo are:
 
