@@ -6,12 +6,12 @@ metadata:
     app: modcluster
     context: AKSDemo
 spec: 
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   # the port that this service should serve on
   - port: 80
-    name: http-port
-    nodePort: 30000
+    protocol: TCP
+    targetPort: 80
   # label keys and values that must match in order to receive traffic for this service
   selector: 
     app: modcluster
