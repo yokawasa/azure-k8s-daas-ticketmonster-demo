@@ -12,19 +12,19 @@ This project contains files that allows you to run [Ticket Monster](https://deve
 
 The pieces of this demo are:
 
+- NGINX Ingress Controller
+    - HTTP Router (Service, Deployment, ReplicaSet, Pod)
 - Apache HTTPD + mod_cluster
-    - Deployment (Replica Set, Pod)
-    - Service
+    - Service, Deployment,Replica Set, Pod
 - Wildfly 10.x Application Server + Ticket Monster application
-    - Deployment (Replica Set, Pod)
+    - Deployment, Replica Set, Pod
 - Postgres 9.x Database Server
-    - Deployment (Replica Set, Pod)
-    - Service
+    - Service, Deployment,Replica Set, Pod, Secret
 - Azure Database for Postgres 9.5 or 9.6
     - Managed PostgreSQL Service in Azure
 - Open Service Broker API for Azure
-- OMS + Log Analytics Agent
-    - DaemonSet (Pod)
+- Log Analytics Agent
+    - DaemonSet
     - Client Daemon Set for Managed Monitor and Log Analytics Service in Azure
 
 ### Procedures
@@ -33,7 +33,7 @@ The pieces of this demo are:
 - [2. Deploy Applications (Cluster1)](docs/02-deploy-apps.md)
 - [3. Manage AKS Cluster with Azure CLI](docs/03-manage-aks-cluster.md)
 - [4. Provision, bind and consume PostgreSQL PaaS using OSBA](docs/04-osba-postgresql.md)
-- [5. Monitoring with OMS/Loganalytics](docs/05-monitoring-with-oms-loganalytics.md)
+- [5. Monitoring with Loganalytics](docs/05-monitoring-with-oms-loganalytics.md)
 - [6. Scale out Pods and Nodes (Cluster2)](docs/06-scale-out-pod-node.md)
 - Extras:
     - [Manage Kubernetes App with kubectl](docs/k8s-operations-with-kubectl.md)
