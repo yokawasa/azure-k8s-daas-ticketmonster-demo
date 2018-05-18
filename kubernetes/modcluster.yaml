@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: modcluster
-          image: yoichikawasaki/mod_cluster-dockerhub:0.0.1
+          image: yoichikawasaki/mod_cluster-dockerhub:0.0.2
           env:
             - name: MODCLUSTER_NET
               value: "192.168. 172. 10."
