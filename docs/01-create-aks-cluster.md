@@ -11,7 +11,6 @@ In addition, execute the following commands which are needed in case that it's t
 az provider register -n Microsoft.Network
 az provider register -n Microsoft.Storage
 az provider register -n Microsoft.Compute
-az provider register -n Microsoft.ContainerService
 ```
 
 Then, create resource group (Resource group named RG-aks in eastus region):
@@ -29,6 +28,8 @@ az aks create --resource-group $RESOURCE_GROUP \
     --kubernetes-version 1.11.1 \
     --node-vm-size Standard_D2_v2 \
     --node-count 3 \
+    --service-principal $SP_CLIENT_ID \
+    --client-secret $SP_CLIENT_SECRET \
     --enable-addons http_application_routing \
     --generate-ssh-keys
 ```
@@ -42,6 +43,8 @@ az aks create --resource-group $RESOURCE_GROUP \
     --kubernetes-version 1.11.1 \
     --node-vm-size Standard_D2_v2 \
     --node-count 3 \
+    --service-principal $SP_CLIENT_ID \
+    --client-secret $SP_CLIENT_SECRET \
     --enable-addons http_application_routing \
     --ssh-key-value $SSH_KEY
 ```
