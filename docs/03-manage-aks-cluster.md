@@ -8,6 +8,11 @@ kubectl cluster-info dump
 
 ## Browse Kubernete dashboard with AKS
 
+As of release Kubernetes v1.7, Dashboard no longer has full admin privileges granted by default. All the privileges are revoked and only minimal privileges granted, that are required to make Dashboard work, therefore you need to grant enough privileges to Dashboard’s Service Account to make Dashbaord function. Here, grant admin privileges to Dashboard’s Service Account with the following command:
+```
+kubectl create -f kubernetes/dashboard-sa-binding.yaml
+```
+
 You can browse Kubernete dashbboard for your AKS cluster with the following command:
 ```
 RESOURCE_GROUP='your resource group (e.g., "RG-aks")'
