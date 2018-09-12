@@ -9,7 +9,9 @@ az provider register -n Microsoft.ContainerService
 In addition, execute the following commands which are needed in case that it's the first time to manage network & compute resources with your subscription:
 ```
 az provider register -n Microsoft.Network
+az provider register -n Microsoft.Storage
 az provider register -n Microsoft.Compute
+az provider register -n Microsoft.ContainerService
 ```
 
 Then, create resource group (Resource group named RG-aks in eastus region):
@@ -22,23 +24,29 @@ az group create --name $RESOURCE_GROUP --location $LOCATION
 
 Create AKS Cluster (generate a new SSH key):
 ```
-RESOURCE_GROUP='your resource group (e.g., "RG-aks")'
-LOCATION='your location (e.g., "eastus")'
-CLUSTER_NAME='your AKS cluster name (e.g., "myAKSCluster")'
-NODE_COUNT='the number of node you create (e.g., 1)'
-
-az aks create --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --node-count $NODE_COUNT --generate-ssh-keys
+az aks create --resource-group $RESOURCE_GROUP \
+    --name $CLUSTER_NAME \
+    --kubernetes-version 1.11.1 \
+    --node-vm-size Standard_D2_v2 \
+    --node-count 3 \
+    --enable-addons http_application_routing \
+    --generate-ssh-keys
 ```
-
 
 If you already have a ssh key generated, specify your SSH key with `--ssh-key-value` option instead of `--generate-ssh-keys` in creating AKS Cluster:
 ```
 SSH_KEY='~/.ssh/id_rsa_aks.pub'
 
-az aks create --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --node-count $NODE_COUNT --ssh-key-value $SSH_KEY
+az aks create --resource-group $RESOURCE_GROUP \
+    --name $CLUSTER_NAME \
+    --kubernetes-version 1.11.1 \
+    --node-vm-size Standard_D2_v2 \
+    --node-count 3 \
+    --enable-addons http_application_routing \
+    --ssh-key-value $SSH_KEY
 ```
 
-## 2. Install the kubectl CLI and connect to the cluster with kubectl
+## 2. Install the kubectl CLI and connect to the cluster with kubectl (NO NEED for Azure Cloud Shell user)
 
 If you want to install it locally, run the following command:
 ```
@@ -72,5 +80,7 @@ kubectl get nodes
 
 (SAMPLE OUTPUT)
 NAME                       STATUS    ROLES     AGE       VERSION
-aks-nodepool1-17576119-1   Ready     agent     15d       v1.9.6
+aks-nodepool1-40291275-0   Ready     agent     21m       v1.11.1
+aks-nodepool1-40291275-1   Ready     agent     21m       v1.11.1
+aks-nodepool1-40291275-2   Ready     agent     21m       v1.11.1
 ```

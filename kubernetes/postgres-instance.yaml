@@ -17,7 +17,6 @@ spec:
     - name: "AllowFromAzure"
       startIPAddress: "0.0.0.0"
       endIPAddress: "0.0.0.0"
-    hardwareFamily: "gen5"
     cores: 2
     storage: 5
     backupRetention: 7

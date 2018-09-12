@@ -77,10 +77,11 @@ kubectl create -f kubernetes/ingress-controller.yaml --record
 
 You can validate that the ingress controller was installed
 ```
-kubectl get pods -n kube-system | grep nginx
+$ kubectl get ingress
 
 (Sample output)
-addon-http-application-routing-nginx-ingress-controller-6472srq   1/1       Running   0          3h
+NAME         HOSTS                                                ADDRESS        PORTS     AGE
+httprouter   ticketapp.f7418ec8af894af8a2ab.eastus.aksapp.io   138.91.112.166    80        2m
 ```
 
 You can browse to the public IP assigned for the ingress controller.

@@ -4,7 +4,7 @@
 
 Open Service Broker for Azure (OSBA) is the open source, Open Service Broker-compatible API server that provisions managed services in Azure. As prerequisites, you need to install Service Catalog onto your Kubernetes cluster.
 
-### Install Helm Client and Tiller (Pre-requiste)
+### Install Helm Client and Tiller (Pre-requiste, NO NEED for Azure Cloud Shell user)
 
 First of all, install Helm Client. 
 
@@ -17,6 +17,8 @@ brew install kubernetes-helm
 ```
 Refer to [Installing Helm](https://docs.helm.sh/using_helm/#installing-helm) for more detail on Helm installation.
 
+
+### Install and upgrade Tiller (Helm Server) Component in AKS cluster
 
 Then, install and upgrade Tiller (Helm server) components in kubernetes cluster. Tiller is the in-cluster server component of Helm. By default, helm init installs the Tiller pod into the kube-system namespace, and configures Tiller to use the default service account. Tiller will need to be configured with cluster-admin access to properly install Service Catalog
 
@@ -31,12 +33,18 @@ Add the Service Catalog chart to the Helm repository
 helm repo add svc-cat https://svc-catalog-charts.storage.googleapis.com
 ```
 
+Grant Helm permission to admin your cluster, so it can install service-catalog:
+```
+kubectl create clusterrolebinding tiller-cluster-admin \
+    --clusterrole=cluster-admin \
+    --serviceaccount=kube-system:default
+```
+
 Install service catalog with Helm chart
 ```
 helm install svc-cat/catalog \
     --name catalog \
-    --namespace catalog \
-    --set rbacEnable=false
+    --namespace catalog
 ```
 
 Check if it's deployed.
@@ -147,10 +155,38 @@ Refer to [Install Open Service Broker for Azure](https://docs.microsoft.com/en-u
 
 ### Provision an instance of the PostgreSQL Service
 
+First of all, open `kubernetes/postgres-instance.yaml` and make sure if `location` and `resourceGroup` parameters are the same as the one you careated for AKS cluster
+```yaml
+apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ServiceInstance
+metadata:
+  name: my-postgresql-instance
+  namespace: default
+spec:
+  clusterServiceClassExternalName: azure-postgresql-9-6
+  clusterServicePlanExternalName: general-purpose
+  parameters:
+    location: eastus                    <<<< HERE
+    resourceGroup: RG-aks               <<<< HERE
+    sslEnforcement: disabled
+    extensions:
+    - uuid-ossp
+    - postgis
+    firewallRules:
+    - name: "AllowFromAzure"
+      startIPAddress: "0.0.0.0"
+      endIPAddress: "0.0.0.0"
+    cores: 2
+    storage: 5
+    backupRetention: 7
+```
+
+Then, run the following command to create postgresql instance
 ```
 kubectl create -f kubernetes/postgres-instance.yaml
 ```
-Sample Output:
+
+you can get postgresql's provisioning status via `svcat` command: 
 ```
 svcat get instances
            NAME            NAMESPACE          CLASS                PLAN            STATUS
