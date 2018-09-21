@@ -1,5 +1,11 @@
 # 02 - Deploy Applications to Kubernete Cluster
 
+## 0. Clone the Github repo and change directory to the repo top
+```
+git clone https://github.com/yokawasa/azure-k8s-daas-ticketmonster-demo.git
+cd azure-k8s-daas-ticketmonster-demo
+```
+
 ## 1.  Deploy Applications
 
 Install the PostgreSQL server by running the following command:
