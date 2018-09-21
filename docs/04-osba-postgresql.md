@@ -18,12 +18,20 @@ brew install kubernetes-helm
 Refer to [Installing Helm](https://docs.helm.sh/using_helm/#installing-helm) for more detail on Helm installation.
 
 
+### Create a service account for Helm in RBAC-enabled cluster
+
+Before you can deploy Helm in an RBAC-enabled cluster, you need a service account and role binding for the Tiller service. 
+
+```
+kubectl create -f kubernetes/helm-rbac.yaml
+```
+
 ### Install and upgrade Tiller (Helm Server) Component in AKS cluster
 
 Then, install and upgrade Tiller (Helm server) components in kubernetes cluster. Tiller is the in-cluster server component of Helm. By default, helm init installs the Tiller pod into the kube-system namespace, and configures Tiller to use the default service account. Tiller will need to be configured with cluster-admin access to properly install Service Catalog
 
 ```
-helm init --upgrade
+helm init --upgrade --service-account tiller
 ```
 
 ### Install Service Catalog using Helm Chart
