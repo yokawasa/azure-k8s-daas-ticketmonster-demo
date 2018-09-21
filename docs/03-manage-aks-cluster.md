@@ -104,3 +104,6 @@ aks-nodepool1-17576119-1   Ready     agent     1m        v1.7.7
 
 See also [Scale an Azure Container Service (AKS) cluster](https://docs.microsoft.com/en-us/azure/aks/scale-cluster) to lean more about the configuration
 
+---
+[Top](../README.md) | [Back](02-deploy-apps.md) | [Next](04-osba-postgresql.md)
+

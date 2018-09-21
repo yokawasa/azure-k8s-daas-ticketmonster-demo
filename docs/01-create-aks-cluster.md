@@ -87,3 +87,6 @@ aks-nodepool1-40291275-0   Ready     agent     21m       v1.11.1
 aks-nodepool1-40291275-1   Ready     agent     21m       v1.11.1
 aks-nodepool1-40291275-2   Ready     agent     21m       v1.11.1
 ```
+
+---
+[Top](../README.md) | [Back](00-preparations.md) | [Next](02-deploy-apps.md)

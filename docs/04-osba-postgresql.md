@@ -259,3 +259,6 @@ kubectl delete -f kubernetes/postgres-instance.yaml
 - [Install Open Service Broker for Azure](https://docs.microsoft.com/en-us/azure/aks/integrate-azure#install-open-service-broker-for-azure)
 - [Parametes of Broker for Azure Database for PostgreSQL](https://github.com/Azure/open-service-broker-azure/blob/master/docs/modules/postgresql.md)
 - [Azure Database for PostgreSQL](https://azure.microsoft.com/en-us/services/postgresql/)
+
+---
+[Top](../README.md) | [Back](03-manage-aks-cluster.md) | [Next](05-monitoring-with-oms-loganalytics.md)
